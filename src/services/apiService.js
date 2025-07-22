@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://monopolity.martinex-concept.com',
+  baseURL: '/api',
 });
 
 api.interceptors.request.use(

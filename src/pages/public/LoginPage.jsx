@@ -50,7 +50,7 @@ const LoginPage = () => {
           {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
         </div>
         <div>
-          <a href={`${config.env.apiUrl}register`} className="text-neutral-500">Vous n'avez pas de compte ? <span className="font-bold">Créer un compte</span></a>
+          <Link to="/register" className="text-neutral-500">Vous n'avez pas de compte ? <span className="font-bold">Créer un compte</span></Link>
         </div>
         <button type="submit" disabled={mutation.isLoading} className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded shadow mt-2">
           {mutation.isLoading ? 'Connexion...' : 'Se connecter'}

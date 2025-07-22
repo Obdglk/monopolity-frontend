@@ -3,10 +3,12 @@ import { useMutation } from '@tanstack/react-query';
 import api from '../../services/apiService';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-
+import config from '../../lib/config';
 const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
+
+  console.log("Api url : ", config.env.apiUrl);
 
   const mutation = useMutation({
     mutationFn: async (data) => {
@@ -31,6 +33,8 @@ const LoginPage = () => {
     mutation.mutate(formData);
   };
 
+  console.log("Api url : ","ERRRR");
+
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
       <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md flex flex-col gap-6">
@@ -46,7 +50,7 @@ const LoginPage = () => {
           {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
         </div>
         <div>
-          <Link to="/register" className="text-neutral-500">Vous n'avez pas de compte ? <span className="font-bold">Créer un compte</span></Link>
+          <a href={`${config.env.apiUrl}register`} className="text-neutral-500">Vous n'avez pas de compte ? <span className="font-bold">Créer un compte</span></a>
         </div>
         <button type="submit" disabled={mutation.isLoading} className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded shadow mt-2">
           {mutation.isLoading ? 'Connexion...' : 'Se connecter'}
